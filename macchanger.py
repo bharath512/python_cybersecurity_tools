@@ -1,5 +1,8 @@
 import subprocess
 
-subprocess.call(["ifconfig","eth0","down"])
-subprocess.call(["ifconfig","eth0","hw","ether","00:11:22:33:44:55"])
-subprocess.call(["ifconfig","eth0","up"])
+interface=input("Interface > ")
+mac_address=input("New MAC address > ")
+
+subprocess.call(["ifconfig",interface,"down"])
+subprocess.call(["ifconfig",interface,"hw","ether",mac_address])
+subprocess.call(["ifconfig",interface,"up"])
