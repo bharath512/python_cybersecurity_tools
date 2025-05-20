@@ -28,13 +28,17 @@ def change_mac(interface, new_mac):
     subprocess.call(["ifconfig", interface, "down"])
     subprocess.call(["ifconfig", interface, "hw", "ether", new_mac])
     subprocess.call(["ifconfig", interface, "up"])
-    subprocess.call(["ifconfig", interface])
-    print("\n[+] Changed MAC address of " + interface + " to " + new_mac)
 
 options = get_argument()
 current_mac = str(get_mac(options.interface))
 print("Current MAC address: "+current_mac)
-#change_mac(options.interface, options.new_mac)
 
+change_mac(options.interface, options.new_mac)
+
+current_mac = str(get_mac(options.interface))
+if current_mac == options.new_mac:
+    print("[+] MAC Address of " + options.interface+ " changed to " + current_mac)
+else:
+    print("[+] MAC address not changed")
 
 
